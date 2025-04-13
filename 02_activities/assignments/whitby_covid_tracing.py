@@ -3,6 +3,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import random
+
+#Making it reproducible
+def set_random_seed(seed=13):
+    np.random.seed(seed)
+    random.seed(seed)
+set_random_seed()
 
 # Note: Suppressing FutureWarnings to maintain a clean output. This is specifically to ignore warnings about
 # deprecated features in the libraries we're using (e.g., 'use_inf_as_na' option in Pandas, used by Seaborn),
@@ -68,7 +75,7 @@ def simulate_event(m):
   return p_wedding_infections, p_wedding_traces
 
 # Run the simulation 1000 times
-results = [simulate_event(m) for m in range(1000)]
+results = [simulate_event(m) for m in range(100)]
 props_df = pd.DataFrame(results, columns=["Infections", "Traces"])
 
 # Plotting the results
